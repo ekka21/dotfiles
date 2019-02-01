@@ -1,0 +1,23 @@
+[user]
+  name = Ekkachai Danwanichakul
+  email = ekka21@gmail.com
+[core]
+  editor = vim -f
+  excludesfile = ~/.gitignore
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+[web]
+  browser = google-chrome
+[credential]
+  helper = osxkeychain
+[push]
+  default = simple
+[merge]
+  tool = kdiff3
+[difftool]
+  prompt = false
+[init]
+	templatedir = ~/.git_template

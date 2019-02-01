@@ -1,0 +1,10 @@
+name: dev
+root: ~
+
+windows:
+  - editor:
+      layout: 46cb,185x48,0,0[185x40,0,0,185x7,0,41{92x7,0,41,92x7,93,41}]
+      panes:
+        - .
+        - .
+        - .
