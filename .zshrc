@@ -1,53 +1,116 @@
-#ZSH_THEME="agnoster"
-ZSH_THEME="avit"
+#{ Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-plugins=(osx git brew history nyan vi-mode vim-interaction tmux aws python docker terraform kubectl)
-COMPLETION_WAITING_DOTS=true
-DISABLE_AUTO_TITLE=true
-unsetopt correct_all
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="/usr/local/opt/libpq/bin:$PATH"
 
-#---PATH-------------
-ZSH=$HOME/.oh-my-zsh
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/ekkachaidanwanichakul/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="avit"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# this is just a test
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
+# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+#plugins=(git docker brew history osx tmux terraform sublime kubectl)
+plugins=(zsh-autosuggestions git kubectl ansible sublime terraform kubectx tmux )
+
 source $ZSH/oh-my-zsh.sh
-export LC_ALL=en_US.UTF-8
+
+# You may need to manually set your language environment
 export LANG=en_US.UTF-8
-export EDITOR='vim -f'
-export PATH="/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin"
-export PATH="$PATH:$HOME/.rvm/gems/ruby-2.3.1/bin"
-export PATH="$PATH:/usr/local/opt/inetutils/libexec/gnubin"
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export ANDROID_HOME=/Users/ek/Library/Android/sdk
-export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
-export PATH=$PATH:/usr/local/bin
-export ANSIBLE_FORKS=60
-#---osx-----------
-alias lsa='ls -lah'
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='vim'
+fi
+
+#---aliases
+alias sshconfig="vim ~/.ssh"
 alias zshconfig="vim ~/.zshrc"
-alias sshconfig="vim ~/.ssh/config"
+alias szsh="source ~/.zshrc"
+alias ohmyzsh="vim  ~/.oh-my-zsh"
+alias weather='curl wttr.in/stl'
 alias code="cd ~/Code"
-alias bull="cd ~/Code/bullmoose"
-alias master="cd ~/Code/bullmoose/master"
-alias child="cd ~/Code/bullmoose/child"
 alias infra="cd ~/Code/infra"
-alias portend="cd ~/Code/infra/portend"
-alias desk="cd ~/desktop"
-alias doc="cd ~/Documents"
+alias desk="cd ~/Desktop"
 alias down="cd ~/Downloads"
 alias o="open ."
-alias szsh='source ~/.zshrc'
-alias www='cd /var/www/domains'
-alias vm='cd /Users/ek/VM'
-alias hg='history | grep'
 alias c='clear'
-alias cat='bat'
-
-#---Networking--------
-alias serve='python -m SimpleHTTPServer 8080'
 alias addhost='sudo vim /etc/hosts'
 alias flushdns="dscacheutil -flushcache"
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
-
+alias hg="history|grep"
 #---Git--------------
 alias ga.="git add ."
 alias gcm="git commit -m"
@@ -58,14 +121,15 @@ alias gba="git branch -a"
 alias grv="git remote -v"
 alias nah='git fetch --all && git reset --hard origin/develop'
 alias gpa='git push origin develop && git push origin master && git push --tags'
-
+alias grhm='git reset --hard origin/main'
+alias grhma='git reset --hard origin/master'
 #---Docker--------
 alias d="docker"
 alias di="docker images"
 alias dps="docker ps"
 alias dpsa="docker ps -a"
 alias din="docker inspect"
-alias drmi='docker rmi -f $(sudo docker image ls -f "dangling=true" -q)'
+alias drmi='docker rmi -f $(docker image ls -f "dangling=true" -q)'
 alias drm='docker rm $(docker ps -aq)'
 alias dc='docker-compose'
 alias dtop='_dTop'
@@ -75,44 +139,53 @@ function _dTop(){
     else docker stats --no-stream | grep $1;
   fi
 }
-#---Tmux------
-alias tattach="tmux a -t"
 
-#---Misc---------
-alias weather='curl wttr.in/stl'
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-#---K8s---------
-alias kc='kubectl'
-alias awsprod='awsp prattle && ks awsprod'
-alias azdev='ks azdev'
+#---AWS---------
+alias awsconfig='vi ~/.aws'
 
-#---AWS----
-. ~/.dotfiles/.aws.aliases
-#---k8s---
-function _kubectlSwitchContext() {
-   if [[ -n $1 ]]; then
-       export KUBECONFIG=~/.kube/config-$1
-       echo "Switched to cluster: $1";
-   fi
-};
+#---K8S--------
+alias kaf='kubectl apply -f'
+alias k='kubectl'
+alias kc='kubectx'
+alias a='argocd'
+alias eks='cd ~/Code/infra/eks'
+alias kubeconfig='vi ~/.kube/config'
+alias h='helm'
+alias wk='watch kubectl'
 
-alias ks='_kubectlSwitchContext'
+#---Terragrunt-----
+alias ta='terragrunt apply'
+#---Telepresence-----
+alias t='telepresence'
+
+#---Misc---
+alias p='python'
+alias mux='tmuxinator'
+alias tmuxconfig='vi ~/.tmux.conf'
+
+source ~/.argocd_zsh
+typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|oc|istioctl|kogito|k9s|helmfile|flux|fluxctl|stern'
+
+alias ecrlist='_ecrlist'
+function _ecrlist() {
+  aws ecr list-images --repository-name $1 --output table --profile prod
+}
+
 alias killport='_killPort'
-alias killpods="kubectl get pods --field-selector=status.phase=Failed | awk '{ if(NR>1)print $1}' | xargs kubectl delete pods"
-
 function _killPort() { lsof -i TCP:$1 | grep LISTEN | awk '{print $2}' | xargs kill -9 }
 
-#---Helm---
-. ~/.dotfiles/.helm.completion
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ek/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/ek/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/ek/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/ek/google-cloud-sdk/completion.zsh.inc'; fi
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
-
-source /usr/local/etc/bash_completion.d/az
-alias t9='brew switch terraform 0.9.6'
-alias t11='brew switch terraform 0.11.11'
-
+alias awsip='_awsIPLookup'
+function _awsIPLookup() {
+  aws ec2 describe-instances \
+  --query "Reservations[*].Instances[*].{InstanceID:InstanceId,PrivateIP:PrivateIpAddress,Name:Tags[?Key=='Name']|[0].Value,Status:State.Name}"  \
+  --filters "Name=tag:Name,Values=$1" \
+  --region us-west-2 \
+  --output text|awk '{print $3}'|pbcopy
+ }
+alias b64='_b64'
+function _b64(){
+  echo -n "$1"|base64|pbcopy
+}
