@@ -1,6 +1,10 @@
 alias awsls="_awsListAll"
+alias awsip='_awsIPLookup'
 alias awsp="_awsSwitchProfile"
+alias awsecr='_ecrlist'
+alias awsconfig='vi ~/.awq'
 
+#--- useful functions ---
 function _awsListAll() {
 
     credentialFileLocation=${AWS_SHARED_CREDENTIALS_FILE};
@@ -26,3 +30,14 @@ function _awsSwitchProfile() {
    fi
 };
 
+function _ecrlist() {
+  aws ecr list-images --repository-name $1 --output table --profile prod
+}
+
+function _awsIPLookup() {
+  aws ec2 describe-instances \
+  --query "Reservations[*].Instances[*].{InstanceID:InstanceId,PrivateIP:PrivateIpAddress,Name:Tags[?Key=='Name']|[0].Value,Status:State.Name}"  \
+  --filters "Name=tag:Name,Values=$1" \
+  --region us-west-2 \
+  --output text|awk '{print $3}'|pbcopy
+ }

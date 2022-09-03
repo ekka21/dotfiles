@@ -1,0 +1,15 @@
+alias d="docker"
+alias di="docker images"
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+alias din="docker inspect"
+alias drmi='docker rmi -f $(docker image ls -f "dangling=true" -q)'
+alias drm='docker rm $(docker ps -aq)'
+alias dc='docker-compose'
+alias dtop='_dTop'
+function _dTop(){
+  if [ $# -eq 0 ]
+    then docker stats --no-stream;
+    else docker stats --no-stream | grep $1;
+  fi
+}

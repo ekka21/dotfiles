@@ -1,0 +1,6 @@
+alias kaf='kubectl apply -f'
+alias k='kubectl'
+alias kc='kubectx'
+alias kubeconfig='vi ~/.kube/config'
+alias h='helm'
+alias wk='watch kubectl'

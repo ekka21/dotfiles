@@ -1,0 +1,11 @@
+alias ga.="git add ."
+alias gcm="git commit -m"
+alias gcmw="git commit -m 'wip'"
+alias gcam="git commit -am"
+alias gpo="git push origin"
+alias gba="git branch -a"
+alias grv="git remote -v"
+alias nah='git fetch --all && git reset --hard origin/develop'
+alias gpa='git push origin develop && git push origin master && git push --tags'
+alias grhm='git reset --hard origin/main'
+alias grhma='git reset --hard origin/master'

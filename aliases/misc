@@ -1,0 +1,26 @@
+alias sshconfig="vim ~/.ssh"
+alias zshconfig="vim ~/.zshrc"
+alias szsh="source ~/.zshrc"
+alias ohmyzsh="vim  ~/.oh-my-zsh"
+alias weather='curl wttr.in/stl'
+alias code="cd ~/Code"
+alias infra="cd ~/Code/infra"
+alias desk="cd ~/Desktop"
+alias down="cd ~/Downloads"
+alias o="open ."
+alias c='clear'
+alias addhost='sudo vim /etc/hosts'
+alias flushdns="dscacheutil -flushcache"
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias hg="history|grep"
+alias killport='_killPort'
+alias b64='_b64'
+alias mux='tmuxinator'
+alias tmuxconfig='vi ~/.tmux.conf'
+
+#--- Useful functions ---
+function _killPort() { lsof -i TCP:$1 | grep LISTEN | awk '{print $2}' | xargs kill -9 }
+
+function _b64(){
+  echo -n "$1"|base64|pbcopy
+}
